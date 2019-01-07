@@ -1,0 +1,34 @@
+@font-face {
+	font-family: 'Butler';
+	src: url(fonts/butler_regular-webfont.woff);
+}
+@font-face {
+	font-family: 'Butler-Bold';
+	src: url(fonts/butler_bold-webfont.woff);
+}
+@font-face {
+	font-family: 'Butler-Medium';
+	src: url(fonts/butler_medium-webfont.woff);
+}
+@font-face {
+	font-family: 'Butler-Stencil';
+	src: url(fonts/butler_regular_stencil-webfont.woff);
+}
+@font-face {
+	font-family: 'Shrikhand';
+	src: url(fonts/Shrikhand-Regular.ttf);
+}
+body {
+	margin: 0;
+}
+h1 {
+	font-family: 'Shrikhand';
+	font-weight: lighter;
+}
+p {
+	font-family: 'Butler';
+	font-weight: lighter;
+}
+a {
+	text-decoration-style: none;
+}
