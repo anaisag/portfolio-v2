@@ -1,24 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <div class="logo"></div>
     <router-view/>
-    <Footer></Footer>
   </div>
 </template>
 
 <style lang="scss">
+@import 'assets/_variables';
+
 #app {
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
-
-#nav {
-	padding: 30px;
-	&.router-link-exact-active {
-		color: #42b983;
-	}
+.logo {
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	border-radius: 50%;
+	background-color: $beige;
+	width: 60px;
+	height: 60px;
 }
 </style>
 

@@ -18,16 +18,28 @@
 	font-family: 'Shrikhand';
 	src: url(fonts/Shrikhand-Regular.ttf);
 }
+
+@import './_variables';
+
 body {
 	margin: 0;
+}
+.page {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	transform: translateZ(0);
 }
 h1 {
 	font-family: 'Shrikhand';
 	font-weight: lighter;
+	color: $green;
 }
 p {
 	font-family: 'Butler';
 	font-weight: lighter;
+	color: $green;
 }
 a {
 	text-decoration-style: none;
