@@ -54,7 +54,7 @@ export default {
 		align-items: center;
 		width: 100%;
 		height: 100%;
-		padding: 0 15% 0 15%;
+		padding: 0 10% 0 10%;
 		box-sizing: border-box;
 		.contacts {
 			font-size: 15px;
@@ -78,7 +78,7 @@ export default {
 					height: 20px;
 					transition: $fast-transition;
 					&:hover {
-						transform: scale(1.1);
+						transform: scale(1.05);
 					}
 				}
 			}

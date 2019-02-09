@@ -8,13 +8,16 @@
       </div>
       <div class="about--contents--pics">
         <div class="photo">
+          <svg height="0" width="0"viewBox="0 0 74.16 77.09">
+            <clipPath id="mask">
+              <path stroke="black" d="M74.12,39c1,29-18.5,36.5-41,38C8.18,78.67-1.22,56.46.12,39c1.5-19.5,8.5-38.5,39-39C58.12-.31,73.38,17.48,74.12,39Z"/>
+            </clipPath>
+          </svg>
+          <img id="photo" src="@/assets/portraitsea.jpg" alt="">
           <img id="shape"src="@/assets/graphics/shape.svg" alt="">
-
-          <div id="mask"></div>
         </div>
       </div>
     </div>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -32,6 +35,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.cls-1 {
+	fill: #fff;
+}
 .about {
 	justify-content: center;
 	h1 {
@@ -44,38 +50,27 @@ export default {
 		box-sizing: border-box;
 		width: 100%;
 		min-height: 40vh;
-		padding: 0 11% 0 13%;
+		padding: 0 13% 0 13%;
 		&--texts {
 			max-width: 50%;
 		}
 		&--pics {
 			position: relative;
+			width: 40%;
 			.photo {
-				width: 25vw;
-				height: 30vh;
-				background-image: url('../assets/portraitsea.jpg');
-				background-size: cover;
-				background-position: center;
 				position: relative;
-				&:hover #mask {
-					transform: rotate(360deg);
-				}
-				#mask {
-					width: 100%;
-					height: 101%;
-					position: absolute;
-					background-image: url('../assets/graphics/mask.svg');
-					background-size: cover;
-					background-position: 55% 50%;
-					transition: 1.5s ease;
-				}
-				#shape {
-					position: absolute;
-					bottom: -10%;
-					right: 10%;
-					width: 25%;
-					z-index: 1;
-				}
+			}
+			#photo {
+				width: 100%;
+				position: relative;
+				clip-path: url(#mask);
+			}
+			#shape {
+				position: absolute;
+				bottom: -10%;
+				right: 10%;
+				width: 25%;
+				z-index: 1;
 			}
 		}
 	}

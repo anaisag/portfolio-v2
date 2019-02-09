@@ -1,5 +1,9 @@
 @font-face {
 	font-family: 'Butler';
+	src: url(fonts/butler_light-webfont.woff);
+}
+@font-face {
+	font-family: 'Butler-Regular';
 	src: url(fonts/butler_regular-webfont.woff);
 }
 @font-face {
@@ -20,7 +24,9 @@
 }
 
 @import './_variables';
-
+* {
+	box-sizing: border-box;
+}
 body {
 	margin: 0;
 }
@@ -30,17 +36,25 @@ body {
 	display: flex;
 	flex-direction: column;
 	transform: translateZ(0);
+	padding-bottom: 130px;
 }
-h1 {
+h1,
+h2,
+h3 {
 	font-family: 'Shrikhand';
 	font-weight: lighter;
 	color: $green;
 }
+
 p {
 	font-family: 'Butler';
 	font-weight: lighter;
 	color: $green;
+	line-height: 1.5;
 }
 a {
-	text-decoration-style: none;
+	text-decoration: none;
+}
+strong {
+	font-family: 'Butler-Medium';
 }

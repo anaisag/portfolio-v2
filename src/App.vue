@@ -2,6 +2,7 @@
   <div id="app">
     <div class="logo"></div>
     <router-view/>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -10,15 +11,18 @@
 
 #app {
 	min-height: 100vh;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 .logo {
 	position: absolute;
+	z-index: 1;
 	left: 5%;
-	top: 5%;
+	top: 50px;
 	border-radius: 50%;
-	background-color: $beige;
+	background-color: $plum;
 	width: 60px;
 	height: 60px;
 }
