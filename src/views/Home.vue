@@ -36,7 +36,7 @@
           <h2>Want to know more about me ?</h2>
           <p>I’m in second year at ECV Digital in Nantes.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ornare ante. Etiam lobortis elit ac convallis faucibus. Donec sit amet sollicitudin velit. Vestibulum in varius dui, et tincidunt metus.</p>
           <div class="test" v-html="home.type">
-
+            
           </div>
           <router-link to="/about"><button type="button" name="button">More about me</button></router-link>
         </div>
@@ -137,7 +137,7 @@ a {
 		display: flex;
 		transition: 0.5s ease;
 		.project {
-			width: 467px;
+			width: 100%;
 			flex-shrink: 0;
 			height: 100%;
 			&.one {
