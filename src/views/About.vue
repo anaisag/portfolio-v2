@@ -3,8 +3,8 @@
     <Nav></Nav>
     <div class="about--contents">
       <div class="about--contents--texts">
-        <h1>Anaïs Appéré-Guillemot</h1>
-        <p>I’m in second year at ECV Digital in Nantes.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ornare ante. Etiam lobortis elit ac convallis faucibus. Donec sit amet sollicitudin velit. Vestibulum in varius dui, et tincidunt metus.</p>
+        <h1>{{home.name}}</h1>
+        <p v-html="home.about_description"></p>
       </div>
       <div class="about--contents--pics">
         <div class="photo">
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Footer from '@/components/Footer.vue';
 import Nav from '@/components/Nav.vue';
 
@@ -31,6 +32,9 @@ export default {
 		Footer,
 		Nav,
 	},
+	computed: mapState({
+		home: state => state.home,
+	}),
 };
 </script>
 

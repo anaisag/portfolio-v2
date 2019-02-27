@@ -8,11 +8,11 @@
     </svg>
     <div class="fil-d-ariane">
       <router-link to="/projects">Works</router-link>
-      <router-link to="/project">Le Bonbon</router-link>
+      <router-link to="/project">{{project.title}}</router-link>
     </div>
     <div class="project-header">
       <div class="project-header-description">
-        <h1>Le Bonbon</h1>
+        <h1 v-html="project.title"></h1>
         <p>
           <a href="https://www.lebonbon.fr" target="_blank"><strong>Le Bonbon</strong></a>
            is a website that gives you news and good deals according to the city you live in. You can choose between 8 different french cities. We were asked to do an overhaul of this website during a three-day workshop. Our response ?
@@ -65,12 +65,26 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
 import Nav from '@/components/Nav.vue';
 
 export default {
-	name: 'project',
 	components: {
 		Nav,
+	},
+	name: 'project',
+	computed: {
+		...mapState({
+			projects: state => state.projects,
+			project() {
+				return this.$store.getters.getProjectById(this.$route.params.id);
+			},
+		}),
+	},
+	methods: {
+		getBgImage(img) {
+			return `background-image: url(${img.url})`;
+		},
 	},
 };
 </script>

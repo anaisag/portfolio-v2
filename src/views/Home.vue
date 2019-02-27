@@ -7,7 +7,7 @@
     <div class="home-header">
       <div class="home-header-texts">
         <h1>Hi there !</h1>
-        <p>I’m a junior web designer &#38; front-end developper based in Nantes, France. I’m currently looking for an <strong>internship</strong> starting in April 2019. </p>
+        <p v-html="home.home_description"></p>
         <router-link to="/projects"><button type="button" name="button">See all my works</button></router-link>
       </div>
       <div class="home-header-slider">
@@ -34,10 +34,7 @@
         </div>
         <div class="home-more-texts">
           <h2>Want to know more about me ?</h2>
-          <p>I’m in second year at ECV Digital in Nantes.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ornare ante. Etiam lobortis elit ac convallis faucibus. Donec sit amet sollicitudin velit. Vestibulum in varius dui, et tincidunt metus.</p>
-          <div class="test" v-html="home.type">
-            
-          </div>
+          <p v-html="home.home_about"></p>
           <router-link to="/about"><button type="button" name="button">More about me</button></router-link>
         </div>
       </div>

@@ -13,22 +13,12 @@ export default new Vuex.Store({
 		getProjectById: state => id => {
 			return state.projects.find(project => project.id === parseInt(id, 10));
 		},
-		getProjectColor: state => project => {
-			switch (project.type[0]) {
-				case 'web':
-					return colors[0];
-				case 'installation':
-					return colors[1];
-				default:
-					return colors[2];
-			}
-		},
 	},
 	mutations: {
 		GET_PROJECTS(state, projects) {
 			state.projects = projects;
 		},
-		GET_ABOUT(state, home) {
+		GET_HOME(state, home) {
 			state.home = home;
 		},
 		SET_LOADING(state, loading) {
@@ -72,7 +62,7 @@ export default new Vuex.Store({
 			const homeUrl = 'https://wp.anaisag.fr/wp-json/wp/v2/home';
 			const res = await fetch(homeUrl);
 			const home = await res.json();
-			commit('GET_ABOUT', {
+			commit('GET_HOME', {
 				name: home[0].title.rendered,
 				...home[0].acf,
 			});
