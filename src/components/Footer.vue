@@ -47,6 +47,7 @@ export default {
 	& > img {
 		object-fit: cover;
 		z-index: -1;
+		transform: translateX(-50%);
 	}
 	.footer--content {
 		position: absolute;

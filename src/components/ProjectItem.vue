@@ -1,14 +1,10 @@
 <template lang="html">
   <div class="project-item">
     <div class="project-hero">
-      <p>01</p>
       <router-link :to="`/project/${project.id}`" @click.native="saveClickedProject">
         <div class="project-hero-image" :style="`${getBgImage(project.hero_image)}`"></div>
       </router-link>
     </div>
-    <svg id="path" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.11 39.59">
-      <path d="M.13,37.46A61.23,61.23,0,0,1,8.54,6.14c1.35-2.31,3-4.66,5.53-5.59,5.47-2,10.67,3.62,13.1,8.92,3.24,7.07,5.07,14.89,9.71,21.13S50.38,41,57.14,37.2c8.24-4.68,8.25-17.81,16.43-22.58C79,11.44,86.16,13.34,91.34,17s9.12,8.7,14,12.74a43.5,43.5,0,0,0,39.95,7.92c12.77-4,24.24-14,37.55-12.76,14.2,1.3,25.5,15.27,39.74,14.43C240.74,38.19,251.93,13.65,270.1,15"/>
-    </svg>
     <div class="project-description">
       <h2 v-html="project.title"></h2>
       <ul>
@@ -25,14 +21,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 export default {
 	props: {
 		project: Object,
 	},
+	computed: {
+		...mapState({
+			projects: state => state.projects,
+		}),
+	},
 	methods: {
 		getBgImage(img) {
-			return `background-image: url(${img.url})`;
+			return `background-image: url(${img.sizes.medium_large})`;
 		},
 		saveClickedProject(evt) {
 			this.$store.commit('SET_CLICKED_PROJECT', this.$el);
@@ -51,7 +52,15 @@ export default {
 	.project-hero {
 		position: relative;
 		min-width: 50%;
-		min-height: 33vh;
+		min-height: 40vh;
+		&:hover + .project-description .call-to-action {
+			svg {
+				width: 40px;
+			}
+			p {
+				font-family: 'Butler-Medium';
+			}
+		}
 		&:hover ~ #path {
 			stroke-dashoffset: 0;
 		}
@@ -68,6 +77,7 @@ export default {
 			border-radius: 7px;
 			background-size: cover;
 			background-position: top;
+			transition: $fast-transition;
 		}
 	}
 	#path {
@@ -88,6 +98,7 @@ export default {
 		ul {
 			display: flex;
 			padding: 0;
+			flex-wrap: wrap;
 			li {
 				font-size: 16px;
 				font-family: 'Butler';
@@ -103,7 +114,7 @@ export default {
 		.call-to-action {
 			display: flex;
 			align-items: center;
-			margin-top: 50%;
+			margin-top: 70px;
 			&:hover {
 				svg {
 					width: 40px;
@@ -164,6 +175,9 @@ export default {
 		.project-description {
 			margin-right: 100px;
 			text-align: right;
+			ul {
+				justify-content: flex-end;
+			}
 			.call-to-action {
 				justify-content: flex-end;
 				svg {

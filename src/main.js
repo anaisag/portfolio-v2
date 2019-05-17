@@ -5,7 +5,6 @@ import store from './store';
 
 import '@/assets/base.scss';
 import 'normalize.css';
-
 Vue.config.productionTip = false;
 
 new Vue({

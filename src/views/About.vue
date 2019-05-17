@@ -13,7 +13,7 @@
               <path stroke="black" d="M74.12,39c1,29-18.5,36.5-41,38C8.18,78.67-1.22,56.46.12,39c1.5-19.5,8.5-38.5,39-39C58.12-.31,73.38,17.48,74.12,39Z"/>
             </clipPath>
           </svg>
-          <img id="photo" src="@/assets/portraitsea.jpg" alt="">
+          <img id="photo" :src="home.profile.sizes.large" alt="">
           <img id="shape"src="@/assets/graphics/shape.svg" alt="">
         </div>
       </div>

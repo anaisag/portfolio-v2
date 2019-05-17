@@ -15,6 +15,10 @@
 	src: url(fonts/butler_medium-webfont.woff);
 }
 @font-face {
+	font-family: 'Butler-Black';
+	src: url(fonts/Butler_Black.otf);
+}
+@font-face {
 	font-family: 'Butler-Stencil';
 	src: url(fonts/butler_regular_stencil-webfont.woff);
 }
@@ -38,7 +42,11 @@ body {
 	transform: translateZ(0);
 	padding-bottom: 130px;
 }
-h1,
+h1 {
+	font-family: 'Butler-Black';
+	color: $green;
+}
+
 h2,
 h3 {
 	font-family: 'Shrikhand';

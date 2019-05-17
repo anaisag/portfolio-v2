@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div class="logo"></div>
+    <router-link to="/">
+      <div class="logo"></div>
+    </router-link>
     <router-view/>
     <Footer></Footer>
   </div>
@@ -22,7 +24,7 @@
 	left: 5%;
 	top: 50px;
 	border-radius: 50%;
-	background-color: $plum;
+	background-color: $brick;
 	width: 60px;
 	height: 60px;
 }

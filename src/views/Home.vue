@@ -1,9 +1,6 @@
 <template>
   <div class="page home">
     <Nav></Nav>
-      <svg id="header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1441 696.12">
-        <path d="M0,0H1441l-1,675s-132,51.88-646-7C309.5,612.5,207,629,0,648Z"/>
-      </svg>
     <div class="home-header">
       <div class="home-header-texts">
         <h1>Hi there !</h1>
@@ -13,15 +10,15 @@
       <div class="home-header-slider">
         <div class="slider">
           <div class="slider-content">
-            <div class="project one"></div>
-            <div class="project two"></div>
-            <div class="project three"></div>
+            <router-link :style="project1.style" :to="`/project/${project1.id}`" @click.native="saveClickedProject" class="project"></router-link>
+            <router-link :style="project2.style" :to="`/project/${project2.id}`" @click.native="saveClickedProject" class="project"></router-link>
+            <router-link :style="project3.style" :to="`/project/${project3.id}`" @click.native="saveClickedProject" class="project"></router-link>
           </div>
         </div>
         <div class="points">
-          <div class="point active one"></div>
-          <div class="point two"></div>
-          <div class="point three"></div>
+          <div v-on:click="translateX('0')" class="point active one"></div>
+          <div v-on:click="translateX('-100%')" class="point two"></div>
+          <div v-on:click="translateX('-200%')" class="point three"></div>
         </div>
       </div>
       </div>
@@ -30,7 +27,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.51 40.34">
             <path class="cls-1" d="M.5,37.84A61.3,61.3,0,0,1,8.91,6.51c1.36-2.3,3-4.65,5.54-5.58,5.46-2,10.66,3.62,13.09,8.92,3.24,7.06,5.08,14.88,9.71,21.12s13.51,10.44,20.26,6.6C65.75,32.89,65.77,19.77,74,15c5.45-3.18,12.59-1.28,17.76,2.33s9.12,8.71,14,12.74A43.5,43.5,0,0,0,145.64,38c12.77-4,24.23-14,37.54-12.76,14.21,1.3,25.51,15.27,39.75,14.42C241.12,38.57,252.3,14,270.48,15.37"/>
           </svg>
-          <img src="../assets/portraitsea.jpg" alt="">
+          <img :src="home.profile.sizes.large" alt="">
         </div>
         <div class="home-more-texts">
           <h2>Want to know more about me ?</h2>
@@ -53,9 +50,50 @@ export default {
 		Footer,
 		Nav,
 	},
-	computed: mapState({
-		home: state => state.home,
-	}),
+	computed: {
+		...mapState({
+			project1: state => ({
+				id: state.projects[0].id,
+				style: {
+					backgroundImage: `url(${state.projects[0].hero_image.sizes.large})`,
+				},
+			}),
+			project2: state => ({
+				id: state.projects[1].id,
+				style: {
+					backgroundImage: `url(${state.projects[1].hero_image.sizes.large})`,
+				},
+			}),
+			project3: state => ({
+				id: state.projects[2].id,
+				style: {
+					backgroundImage: `url(${state.projects[2].hero_image.sizes.large})`,
+				},
+			}),
+			home: state => state.home,
+		}),
+	},
+	methods: {
+		translateX(percent) {
+			document.querySelector('.active').classList.remove('active');
+			event.target.classList.add('active');
+			document.querySelector('.slider-content').style.transform = `translateX(${percent})`;
+		},
+		saveClickedProject(evt) {
+			let target;
+			if (evt.path) {
+				// chrome compatible
+				target = evt.path.filter(e => e.tagName === 'A')[0];
+			} else {
+				// fallback for navigator without evt.path
+				target = evt.target;
+				while (target.tagName !== 'A') {
+					target = target.parentElement;
+				}
+			}
+			this.$store.commit('SET_CLICKED_PROJECT', target);
+		},
+	},
 };
 </script>
 
@@ -72,7 +110,7 @@ a {
 	flex-shrink: 0;
 	button {
 		background-color: $orange;
-		border: none;
+		border: 2px solid transparent;
 		font-family: 'Butler';
 		color: white;
 		padding: 5px 20px;
@@ -81,7 +119,10 @@ a {
 		transition: $fast-transition;
 		&:hover {
 			cursor: pointer;
-			transform: scale(1.01);
+			transform: scale(1.03);
+			color: $orange;
+			background-color: transparent;
+			border: 2px solid $orange;
 		}
 	}
 }
@@ -116,7 +157,7 @@ a {
 					cursor: pointer;
 				}
 				&.active {
-					background-color: $plum;
+					background-color: $brick;
 				}
 			}
 		}
@@ -133,19 +174,13 @@ a {
 		height: 100%;
 		display: flex;
 		transition: 0.5s ease;
+		// animation: slide ease-in-out 10s infinite;
 		.project {
 			width: 100%;
 			flex-shrink: 0;
 			height: 100%;
-			&.one {
-				background-color: $green;
-			}
-			&.two {
-				background-color: $plum;
-			}
-			&.three {
-				background-color: $orange;
-			}
+			background-size: cover;
+			background-position: center;
 		}
 	}
 }
@@ -177,7 +212,31 @@ a {
 		}
 		img {
 			max-width: 300px;
+			border-radius: 7px;
 		}
+	}
+}
+@keyframes slide {
+	0% {
+		transform: translateX(0);
+	}
+	20% {
+		transform: translateX(0);
+	}
+	33% {
+		transform: translateX(-100%);
+	}
+	55% {
+		transform: translateX(-100%);
+	}
+	70% {
+		transform: translateX(-200%);
+	}
+	90% {
+		transform: translateX(-200%);
+	}
+	100% {
+		transform: translateX(0);
 	}
 }
 </style>
